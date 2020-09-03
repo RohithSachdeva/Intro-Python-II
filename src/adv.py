@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -40,6 +41,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player("Rohith", room['outside'])
+
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -50,3 +54,61 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print("Your current room: ", player.room.name, player.room.description)
+
+    direction = input("Input a direction: ")
+    
+    if direction.lower() == "q":
+        break
+    elif direction.lower() == "n":
+        if hasattr(player.room, "n_to"):
+            player.room = player.room.n_to
+        else:
+            print("A room doesn't exist there")
+    elif direction.lower() == "s":
+        if hasattr(player.room, "s_to"):
+            player.room = player.room.s_to
+        else:
+            print("A room doesn't exist there")
+    elif direction.lower() == "e":
+        if hasattr(player.room, "e_to"):
+            player.room = player.room.e_to
+        else:
+            print("A room doesn't exist there")
+    elif direction.lower() == "w":
+        if hasattr(player.room, "w_to"):
+            player.room = player.room.w_to
+        else:
+            print("A room doesn't exist there")
+
+
+
+
+
+
+
+
+"""
+Text based in every room ... command line ... 
+Several rooms, items to interact with .. 
+What are the objects involved here and what do they do? 
+
+
+* Create the input command parser in `adv.py` which allows the program to receive player input and commands to move to rooms
+  in the four cardinal directions.
+* Fill out Player and Room classes in `player.py` and `room.py`
+
+
+Player in the room... Player HAS a room ... Player has A ITEM 
+
+As we build out the objects... we have to figure out how to store relationships 
+
+Player Functions: 
+-Move (Change rooms)
+-Pickup(Belongs to the class) (Method on the player)
+
+
+
+"""
